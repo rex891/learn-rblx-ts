@@ -13,6 +13,8 @@
 	"type": "commonjs",
 	"devDependencies": {
 		"@rbxts/compiler-types": "^3.0.0-types.0",
+		"@rbxts/react": "^17.2.3",
+		"@rbxts/react-roblox": "^17.2.3",
 		"@rbxts/types": "^1.0.889",
 		"@typescript-eslint/eslint-plugin": "^8.46.3",
 		"@typescript-eslint/parser": "^8.46.3",
@@ -25,8 +27,8 @@
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
-		"@rbxts/react": "^17.2.3",
-		"@rbxts/react-roblox": "^17.2.3",
+		"@rbxts/react-devtools-core": "^17.3.7-alpha.1",
+		"@rbxts/react-globals": "^17.3.7-alpha.1",
 		"@rbxts/services": "^1.6.0",
 		"typescript-eslint": "^8.46.3"
 	}
