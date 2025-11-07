@@ -1,4 +1,4 @@
-import { DataStoreService, Players, Workspace } from "@rbxts/services"
+import { DataStoreService, Players } from "@rbxts/services"
 import "server/create-cans"
 import { PlayerData, getData, save } from "server/db"
 import "server/flashlight"
@@ -8,11 +8,6 @@ let AUTOSAVE_INTERVAL = 45
 let dataStoreTesting = DataStoreService.GetDataStore("LastPlayed")
 
 let playerDataByUserId = new Map<number, PlayerData>()
-
-game.Workspace.ClickablePart.ClickDetector.MouseClick.Connect((player) => {
-	let fire = Workspace.ClickablePart.Fire
-	fire.Enabled = !fire.Enabled
-})
 
 Players.PlayerAdded.Connect((player) => {
 	playerDataByUserId.set(player.UserId, getData(player.UserId))

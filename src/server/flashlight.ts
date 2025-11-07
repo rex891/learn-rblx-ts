@@ -1,10 +1,8 @@
-import { ServerStorage, Workspace } from "@rbxts/services";
-import { playerHasTool } from "shared/player";
-
-let flashlight = ServerStorage.Tools.Flashlight;
+import { ServerStorage, Workspace } from "@rbxts/services"
+import { playerHasTool } from "shared/player"
 
 Workspace.FlashlightGiver.ProximityPrompt.Triggered.Connect((player) => {
 	if (!playerHasTool(player, "Flashlight")) {
-		flashlight.Clone().Parent = player.WaitForChild("Backpack");
+		ServerStorage.Tools.Flashlight.Clone().Parent = player.WaitForChild("Backpack")
 	}
-});
+})
