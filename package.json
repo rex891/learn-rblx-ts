@@ -1,0 +1,33 @@
+{
+	"name": "learn-rblx-ts",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "rbxtsc",
+		"watch": "rbxtsc -w"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"devDependencies": {
+		"@rbxts/compiler-types": "^3.0.0-types.0",
+		"@rbxts/types": "^1.0.889",
+		"@typescript-eslint/eslint-plugin": "^8.46.3",
+		"@typescript-eslint/parser": "^8.46.3",
+		"eslint": "^8.57.1",
+		"eslint-config-prettier": "^9.1.2",
+		"eslint-plugin-prettier": "^5.5.4",
+		"eslint-plugin-roblox-ts": "^1.2.1",
+		"prettier": "^3.6.2",
+		"roblox-ts": "^3.0.0",
+		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"@rbxts/react": "^17.2.3",
+		"@rbxts/react-roblox": "^17.2.3",
+		"@rbxts/services": "^1.6.0",
+		"typescript-eslint": "^8.46.3"
+	}
+}
