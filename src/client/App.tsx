@@ -1,5 +1,6 @@
 import React from "@rbxts/react"
 import { Button } from "./components/Button"
+import { Counter } from "./components/Counter"
 
 export function App() {
 	return (
@@ -10,6 +11,7 @@ export function App() {
 					print("Button clicked!")
 				}}
 			/>
+			<Counter initialCount={3}></Counter>
 		</screengui>
 	)
 }

@@ -22,7 +22,7 @@
         "plugin:roblox-ts/recommended",
         "plugin:prettier/recommended"
     ],
-    "ignorePatterns": ["out/**"],
+    "ignorePatterns": ["out/**", "node_modules/**"],
     "rules": {
         "prettier/prettier": "warn"
     }
