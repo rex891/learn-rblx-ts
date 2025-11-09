@@ -7,8 +7,7 @@ export function playerHasTool(player: Player, toolname: string): boolean {
 	)
 }
 
-export function playerFromHit(part: Part) {
+export function getPlayerFromPart(part: BasePart) {
 	let character = part.FindFirstAncestorOfClass("Model")
-	let player = Players.GetPlayerFromCharacter(character)
-	return $tuple(player, character)
+	return Players.GetPlayerFromCharacter(character)
 }

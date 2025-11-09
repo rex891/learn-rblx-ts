@@ -1,5 +1,5 @@
 import { ServerStorage, Workspace } from "@rbxts/services"
-import { playerHasTool } from "shared/player"
+import { playerHasTool } from "server/player-helpers"
 
 Workspace.FlashlightGiver.ProximityPrompt.Triggered.Connect((player) => {
 	if (!playerHasTool(player, "Flashlight")) {

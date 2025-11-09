@@ -1,18 +1,15 @@
 import { DataStoreService } from "@rbxts/services"
+import { PlayerData } from "../shared/game-types"
 
 let playerDataStore = DataStoreService.GetDataStore("playerData")
 
-export type PlayerData = {
-	coins: number
-	stage: number
-}
-
-export function save(playerId: number, playerData: PlayerData) {
+export function savePlayerData(playerId: number, playerData: PlayerData) {
 	playerDataStore.SetAsync(`${playerId}`, playerData)
 }
 
-export function getData(playerId: number) {
+export function getPlayerData(playerId: number) {
 	let [remoteData, _] = playerDataStore.GetAsync<PlayerData>(`${playerId}`)
-	let playerData: PlayerData = remoteData || { coins: 0, stage: 1 }
+	print(remoteData)
+	let playerData: PlayerData = remoteData || { coins: 0, stage: 1, lastPlayed: undefined }
 	return playerData
 }
