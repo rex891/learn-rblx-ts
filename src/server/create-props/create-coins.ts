@@ -1,4 +1,5 @@
 import { ReplicatedStorage, Workspace } from "@rbxts/services"
+import { UpdateCoins } from "server/remote-functions"
 import { addCoin } from "../data"
 import { getPlayerFromPart } from "../player-helpers"
 
@@ -14,7 +15,9 @@ function createCoins() {
 	coin.Touched.Connect((part) => {
 		let player = getPlayerFromPart(part)
 		if (!player) return
-		addCoin(player.UserId)
+		let coinsCount = addCoin(player.UserId)
+		UpdateCoins.FireClient(player, coinsCount)
+
 		coin.Destroy()
 	})
 }

@@ -8,11 +8,7 @@ export function Counter({ initialCount }: CounterProps) {
 	return (
 		<textbutton
 			Text={`Count: ${count}`}
-			// Event={{
-			// 	Activated: () => setCount(count + 1),
-			// }}
 			AnchorPoint={new Vector2(0.15, 0.15)}
-			// Name="Dude"
 			BackgroundColor3={new Color3(255, 0, 0)}
 			Size={new UDim2(0, 100, 0, 50)}
 			Position={new UDim2(0.15, 0, 0.15, 0)}

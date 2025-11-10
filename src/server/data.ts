@@ -1,14 +1,17 @@
 import * as db from "server/db"
+import { UpdateCoins } from "server/remote-functions"
 import { PlayerData } from "shared/game-types"
 import { mapEntries } from "shared/helpers"
 
 let AUTOSAVE_INTERVAL = 45
 let playerDataByUserId = new Map<number, PlayerData>()
 
-export function loadPlayerData(playerId: number) {
-	let playerData = db.getPlayerData(playerId)
+export function loadPlayerData(player: Player) {
+	let playerData = db.getPlayerData(player.UserId)
 	print("loaded", playerData)
-	playerDataByUserId.set(playerId, playerData)
+	UpdateCoins.FireClient(player, playerData.coins)
+
+	playerDataByUserId.set(player.UserId, playerData)
 }
 
 export function savePlayerData(playerId: number) {
@@ -25,7 +28,11 @@ export function savePlayerData(playerId: number) {
 
 export function addCoin(playerId: number) {
 	let playerData = playerDataByUserId.get(playerId)
-	if (playerData) playerData.coins += 1
+	if (playerData) {
+		playerData.coins += 1
+		return playerData.coins
+	}
+	return 0
 }
 
 export function getPlayerCoins() {
