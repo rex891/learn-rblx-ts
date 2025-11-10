@@ -27,6 +27,7 @@
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
+		"@rbxts/net": "^3.0.10",
 		"@rbxts/react-devtools-core": "^17.3.7-alpha.1",
 		"@rbxts/react-globals": "^17.3.7-alpha.1",
 		"@rbxts/services": "^1.6.0",

@@ -1,7 +1,7 @@
 import * as db from "server/db"
-import { UpdateCoins } from "server/remote-functions"
 import { PlayerData } from "shared/game-types"
 import { mapEntries } from "shared/helpers"
+import { Remotes } from "shared/remotes"
 
 let AUTOSAVE_INTERVAL = 45
 let playerDataByUserId = new Map<number, PlayerData>()
@@ -9,8 +9,7 @@ let playerDataByUserId = new Map<number, PlayerData>()
 export function loadPlayerData(player: Player) {
 	let playerData = db.getPlayerData(player.UserId)
 	print("loaded", playerData)
-	UpdateCoins.FireClient(player, playerData.coins)
-
+	Remotes.Server.Get("UpdateCoins").SendToPlayer(player, playerData.coins)
 	playerDataByUserId.set(player.UserId, playerData)
 }
 

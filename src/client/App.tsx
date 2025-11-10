@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "@rbxts/react"
-import { ReplicatedStorage } from "@rbxts/services"
-// import { myRemote } from "client/remote-functions"
+
+import { Remotes } from "shared/remotes"
 import { Counter } from "./components/Counter"
 
 export function App() {
 	let [coinCount, setCoinCount] = useState<number>(0)
 
 	useEffect(() => {
-		// remote function
-		let myRemote = ReplicatedStorage.WaitForChild("Dude") as RemoteFunction
-		print(myRemote.InvokeServer("Wassup bro"))
-
-		// connect to updatecoins
-		let UpdateCoins = ReplicatedStorage.WaitForChild("UpdateCoins") as RemoteEvent
-		let connection = UpdateCoins.OnClientEvent.Connect((coins: number) => {
+		const updateCoinsConnection = Remotes.Client.Get("UpdateCoins").Connect((coins: number) => {
 			setCoinCount(coins)
 		})
-		return () => connection.Disconnect()
+
+		// remote function
+		async function remoteFunc() {
+			const example = await Remotes.Client.Get("RemFuncExample").CallServerAsync("Wsasup bra")
+			if (typeOf(example) === "string") print(example)
+		}
+		remoteFunc()
+
+		return () => updateCoinsConnection.Disconnect()
 	})
 
 	print("hello app")
