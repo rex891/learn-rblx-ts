@@ -21,7 +21,6 @@ export function App() {
 		return () => updateCoinsConnection.Disconnect()
 	})
 
-	print("hello app")
 	return (
 		<screengui>
 			{/* <Button
