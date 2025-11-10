@@ -42,7 +42,7 @@ export function getPublicPlayerData() {
 	return
 }
 
-// autosave
+// autosave all players
 task.spawn(() => {
 	while (true) {
 		task.wait(AUTOSAVE_INTERVAL)
