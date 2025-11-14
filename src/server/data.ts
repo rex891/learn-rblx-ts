@@ -1,7 +1,7 @@
 import * as db from "server/db"
 import { PlayerData } from "shared/game-types"
 import { mapEntries } from "shared/helpers"
-import { Remotes } from "shared/remotes"
+import Remotes from "shared/remotes"
 
 let AUTOSAVE_INTERVAL = 45
 let playerDataByUserId = new Map<number, PlayerData>()
@@ -30,6 +30,14 @@ export function addCoin(playerId: number) {
 	if (playerData) {
 		playerData.coins += 1
 		return playerData.coins
+	}
+	return 0
+}
+export function addKill(playerId: number) {
+	let playerData = playerDataByUserId.get(playerId)
+	if (playerData) {
+		playerData.kills += 1
+		return playerData.kills
 	}
 	return 0
 }

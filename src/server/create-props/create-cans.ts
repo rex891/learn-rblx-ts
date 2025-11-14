@@ -17,5 +17,7 @@ for (let i = 0; i < 500; i++) {
 
 Workspace.ClickablePart.ClickDetector.MouseClick.Connect((player) => {
 	let fire = Workspace.ClickablePart.Fire
+	print("fire.enabled 1", fire.Enabled)
 	fire.Enabled = !fire.Enabled
+	print("fire.enabled 2", fire.Enabled)
 })

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "@rbxts/react"
 
-import { Remotes } from "shared/remotes"
+import Remotes from "shared/remotes"
 import { Counter } from "./components/Counter"
 
 export function App() {

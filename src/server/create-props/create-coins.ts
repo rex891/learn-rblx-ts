@@ -27,6 +27,5 @@ for (let i = 0; i < 500; i++) {
 }
 
 Workspace.ClickablePart.ClickDetector.MouseClick.Connect((player) => {
-	let fire = Workspace.ClickablePart.Fire
-	fire.Enabled = !fire.Enabled
+	Workspace.ClickablePart.Fire.Enabled = !Workspace.ClickablePart.Fire.Enabled
 })

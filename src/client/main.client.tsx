@@ -2,6 +2,7 @@ import React, { StrictMode } from "@rbxts/react"
 import { createPortal, createRoot } from "@rbxts/react-roblox"
 import { Players } from "@rbxts/services"
 import { App } from "client/App"
+import "./ToolHandler"
 
 let playerGui = Players.LocalPlayer.WaitForChild("PlayerGui").WaitForChild("ScreenGui")
 

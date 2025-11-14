@@ -3,6 +3,7 @@ import "server/create-props/checkpoints"
 import "server/create-props/create-cans"
 import "server/create-props/create-coins"
 import "server/create-props/flashlight"
+import "server/weapons"
 
 import Remotes from "shared/remotes"
 import { loadPlayerData, savePlayerData } from "./data"
