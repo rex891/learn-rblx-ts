@@ -5,4 +5,6 @@ export type PlayerData = {
 	lastPlayed: number | undefined
 }
 
+export type SessionPlayerData = {}
+
 export type PubilcPlayerData = Pick<PlayerData, "coins">

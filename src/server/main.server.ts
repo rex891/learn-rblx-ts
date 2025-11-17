@@ -5,12 +5,15 @@ import "server/create-props/create-coins"
 import "server/create-props/flashlight"
 import "server/weapons"
 
-import Remotes from "shared/remotes"
 import { loadPlayerData, savePlayerData } from "./data"
 
 Players.PlayerAdded.Connect((player) => {
-	Remotes.Server.Get("RemFuncExample").SetCallback((player, text) => `Got: ${text} from ${player.Name}!!!`)
 	loadPlayerData(player)
+	player.CharacterAdded.Connect((character) => {
+		character.ChildAdded.Connect((child) => {
+			if (child.IsA("Tool")) print(`${player} equipped a ${child}`)
+		})
+	})
 })
 
 Players.PlayerRemoving.Connect((player) => {

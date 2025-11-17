@@ -9,7 +9,6 @@ export function savePlayerData(playerId: number, playerData: PlayerData) {
 
 export function getPlayerData(playerId: number) {
 	let [remoteData, _] = playerDataStore.GetAsync<PlayerData>(`${playerId}`)
-	print(remoteData)
 	let playerData: PlayerData = remoteData || { coins: 0, stage: 1, lastPlayed: undefined, kills: 0 }
 	return playerData
 }

@@ -2,13 +2,15 @@ import * as db from "server/db"
 import { PlayerData } from "shared/game-types"
 import { mapEntries } from "shared/helpers"
 import Remotes from "shared/remotes"
+import { GunSettings } from "shared/Settings"
 
-let AUTOSAVE_INTERVAL = 45
-let playerDataByUserId = new Map<number, PlayerData>()
+const AUTOSAVE_INTERVAL = 45
+const playerDataByUserId = new Map<number, PlayerData>()
+const currentPlayerWeapon = new Map<number, GunSettings>()
 
 export function loadPlayerData(player: Player) {
-	let playerData = db.getPlayerData(player.UserId)
-	print("loaded", playerData)
+	let playerData: PlayerData = db.getPlayerData(player.UserId)
+	print("loaded player data: ", playerData)
 	Remotes.Server.Get("UpdateCoins").SendToPlayer(player, playerData.coins)
 	playerDataByUserId.set(player.UserId, playerData)
 }

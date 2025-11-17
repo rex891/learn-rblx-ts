@@ -11,13 +11,6 @@ export function App() {
 			setCoinCount(coins)
 		})
 
-		// remote function
-		async function remoteFunc() {
-			const example = await Remotes.Client.Get("RemFuncExample").CallServerAsync("Wsasup bra")
-			if (typeOf(example) === "string") print("got from remote function: ", example)
-		}
-		remoteFunc()
-
 		return () => {
 			updateCoinsConnection.Disconnect()
 		}
