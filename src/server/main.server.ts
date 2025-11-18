@@ -9,13 +9,17 @@ import { loadPlayerData, savePlayerData } from "./data"
 
 Players.PlayerAdded.Connect((player) => {
 	loadPlayerData(player)
-	player.CharacterAdded.Connect((character) => {
-		character.ChildAdded.Connect((child) => {
-			if (child.IsA("Tool")) print(`${player} equipped a ${child}`)
-		})
-	})
+	player.CharacterAdded.Connect(characterAdded)
 })
 
 Players.PlayerRemoving.Connect((player) => {
 	savePlayerData(player.UserId)
 })
+
+function characterAdded(character: Model) {
+	//tool added
+	character.ChildAdded.Connect((child) => {
+		if (child.IsA("Tool")) {
+		}
+	})
+}
