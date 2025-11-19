@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "@rbxts/react"
 
-import Remotes from "shared/remotes"
+import { remotes } from "shared/remotes"
 import { Counter } from "./components/Counter"
 
 export function App() {
 	let [coinCount, setCoinCount] = useState<number>(0)
 
 	useEffect(() => {
-		const updateCoinsConnection = Remotes.Client.Get("UpdateCoins").Connect((coins: number) => {
-			setCoinCount(coins)
-		})
+		const disconnectCoins = remotes.updateCoins.connect(setCoinCount)
 
 		return () => {
-			updateCoinsConnection.Disconnect()
+			disconnectCoins()
 		}
 	})
 

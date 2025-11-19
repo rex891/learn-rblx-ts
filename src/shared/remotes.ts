@@ -1,11 +1,11 @@
-import { CreateDefinitions, Definitions } from "@rbxts/net"
-const Remotes = CreateDefinitions({
-	UpdateCoins: Definitions.ServerToClientEvent<[coinCount: number]>(),
-	UseWeapon: Definitions.ClientToServerEvent<[hitPosition: Vector3]>(),
-	// Client reports a weapon ray for server verification
-	WeaponHit: Definitions.ClientToServerEvent<[origin: Vector3, direction: Vector3, maxDistance: number]>(),
-	Hit: Definitions.ClientToServerEvent<
-		[hitPart: BasePart, direction: Vector3, gunPosition: Vector3, hitPosition: Vector3]
-	>(),
+import { Client, createRemotes, remote, Server } from "@rbxts/remo"
+import { t } from "@rbxts/t"
+
+export const remotes = createRemotes({
+	updateCoins: remote<Client, [coinCount: number]>(),
+	weaponHit: remote<Server, [origin: Vector3, direction: Vector3, maxDistance: number]>(
+		t.Vector3,
+		t.Vector3,
+		t.number,
+	),
 })
-export default Remotes

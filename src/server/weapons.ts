@@ -1,8 +1,4 @@
 import { ServerStorage, Workspace } from "@rbxts/services"
-import Remotes from "shared/remotes"
-import { blueGunSettings } from "shared/Settings"
-import { addKill } from "./data"
-import { getPlayerFromPart } from "./player-helpers"
 
 const SECURITY_ANGLE = 180
 const ANGLE_AT_DIST = 3
@@ -29,34 +25,34 @@ blueGun.Handle.CFrame = new CFrame(-36, 12.05, -591.666)
 // 	return angle <= adjustedSecurityAngle
 // }
 
-Remotes.Server.Get("UseWeapon").Connect((player, mouseHitPosition) => {
-	const raycastParams = new RaycastParams()
-	raycastParams.FilterType = Enum.RaycastFilterType.Exclude
-	raycastParams.FilterDescendantsInstances = [player.Character as Model, Workspace.Effects]
+// Remotes.Server.Get("UseWeapon").Connect((player, mouseHitPosition) => {
+// 	const raycastParams = new RaycastParams()
+// 	raycastParams.FilterType = Enum.RaycastFilterType.Exclude
+// 	raycastParams.FilterDescendantsInstances = [player.Character as Model, Workspace.Effects]
 
-	//get gun handle
-	const backpack = player.WaitForChild("Backpack") as Backpack
-	const gun = backpack.WaitForChild("BlueGun") as Tool
-	const gunHandle = gun.WaitForChild("Handle") as Part
+// 	//get gun handle
+// 	const backpack = player.WaitForChild("Backpack") as Backpack
+// 	const gun = backpack.WaitForChild("BlueGun") as Tool
+// 	const gunHandle = gun.WaitForChild("Handle") as Part
 
-	const direction = mouseHitPosition.sub(gunHandle.Position).Unit.mul(blueGunSettings.range)
+// 	const direction = mouseHitPosition.sub(gunHandle.Position).Unit.mul(blueGunSettings.range)
 
-	const raycastResult = Workspace.Raycast(gunHandle.Position, direction, raycastParams)
-	if (!raycastResult) return
+// 	const raycastResult = Workspace.Raycast(gunHandle.Position, direction, raycastParams)
+// 	if (!raycastResult) return
 
-	const hitPart = raycastResult.Instance
-	if (hitPart) {
-		const humanoid = getPlayerFromPart(hitPart)?.Character?.FindFirstChildOfClass("Humanoid")
-		if (!humanoid) return
+// 	const hitPart = raycastResult.Instance
+// 	if (hitPart) {
+// 		const humanoid = getPlayerFromPart(hitPart)?.Character?.FindFirstChildOfClass("Humanoid")
+// 		if (!humanoid) return
 
-		if (humanoid.Health > 0) {
-			let damage = blueGunSettings.damage
-			if (hitPart.Name === "Head") damage += blueGunSettings.headshotMultiplier
-			humanoid.TakeDamage(damage)
-			if (humanoid.Health <= 0) addKill(player.UserId)
-		}
-	}
-})
+// 		if (humanoid.Health > 0) {
+// 			let damage = blueGunSettings.damage
+// 			if (hitPart.Name === "Head") damage += blueGunSettings.headshotMultiplier
+// 			humanoid.TakeDamage(damage)
+// 			if (humanoid.Health <= 0) addKill(player.UserId)
+// 		}
+// 	}
+// })
 
 // Remotes.Server.Get("Replicate").Connect((player, gunPosition, hitPosition, rayColor, raySize) => {
 // 	print("server fire")

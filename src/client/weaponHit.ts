@@ -1,4 +1,4 @@
-import Remotes from "shared/remotes"
+import { remotes } from "shared/remotes"
 
 /**
  * Convenience helper: build a ray from a gun handle and the player's mouse.
@@ -7,5 +7,5 @@ import Remotes from "shared/remotes"
 export function weaponHitFromMouse(gunPosition: Vector3, mousePosition: Vector3, maxDistance: number) {
 	const dir = mousePosition.sub(gunPosition)
 	if (dir.Magnitude === 0) return
-	Remotes.Client.Get("WeaponHit").SendToServer(gunPosition, dir.Unit, maxDistance)
+	remotes.weaponHit.fire(gunPosition, dir.Unit, maxDistance)
 }

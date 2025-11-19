@@ -1,5 +1,5 @@
 import { ReplicatedStorage, Workspace } from "@rbxts/services"
-import Remotes from "shared/remotes"
+import { remotes } from "shared/remotes"
 import { addCoin } from "../data"
 import { getPlayerFromPart } from "../player-helpers"
 
@@ -16,7 +16,7 @@ function createCoins() {
 		let player = getPlayerFromPart(part)
 		if (!player) return
 		let coinsCount = addCoin(player.UserId)
-		Remotes.Server.Get("UpdateCoins").SendToPlayer(player, coinsCount)
+		remotes.updateCoins.fire(player, coinsCount)
 
 		coin.Destroy()
 	})
