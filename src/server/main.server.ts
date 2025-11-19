@@ -5,21 +5,25 @@ import "server/create-props/create-coins"
 import "server/create-props/flashlight"
 import "server/weapons"
 
-import { loadPlayerData, savePlayerData } from "./data"
+import { changeWeapon, loadPlayerData, savePlayerData } from "./data"
 
 Players.PlayerAdded.Connect((player) => {
 	loadPlayerData(player)
-	player.CharacterAdded.Connect(characterAdded)
+	player.CharacterAdded.Connect((character: Model) => {
+		//tool added
+		character.ChildAdded.Connect((child) => {
+			if (child.IsA("Tool")) {
+				changeWeapon(player.UserId, child.Name)
+			}
+		})
+		character.ChildRemoved.Connect((child) => {
+			if (child.IsA("Tool")) {
+				changeWeapon(player.UserId, undefined)
+			}
+		})
+	})
 })
 
 Players.PlayerRemoving.Connect((player) => {
 	savePlayerData(player.UserId)
 })
-
-function characterAdded(character: Model) {
-	//tool added
-	character.ChildAdded.Connect((child) => {
-		if (child.IsA("Tool")) {
-		}
-	})
-}

@@ -3,17 +3,17 @@ import { ServerStorage, Workspace } from "@rbxts/services"
 const SECURITY_ANGLE = 180
 const ANGLE_AT_DIST = 3
 
-const redGun = ServerStorage.Tools.RedGun.Clone()
-redGun.Parent = Workspace
-redGun.Handle.CFrame = new CFrame(-33, 12.05, -591.666)
-const blueGun = ServerStorage.Tools.BlueGun.Clone()
-blueGun.Parent = Workspace
-blueGun.Parent = Workspace
-blueGun.Handle.CFrame = new CFrame(-36, 12.05, -591.666)
+const redWeapon = ServerStorage.Tools.RedGun.Clone()
+redWeapon.Parent = Workspace
+redWeapon.Handle.CFrame = new CFrame(-33, 12.05, -591.666)
+const blueWeapon = ServerStorage.Tools.BlueGun.Clone()
+blueWeapon.Parent = Workspace
+blueWeapon.Parent = Workspace
+blueWeapon.Handle.CFrame = new CFrame(-36, 12.05, -591.666)
 
-// function verifyHit(direction: Vector3, gunPosition: Vector3, hitPosition: Vector3, gunSettings: GunSettings) {
-// 	const serverDirection = hitPosition.sub(gunPosition) // this is probably wrong, need to see what the server object is
-// 	if (serverDirection.Magnitude > gunSettings.range) return false
+// function verifyHit(direction: Vector3, weaponPosition: Vector3, hitPosition: Vector3, weaponSettings: WeaponSettings) {
+// 	const serverDirection = hitPosition.sub(weaponPosition) // this is probably wrong, need to see what the server object is
+// 	if (serverDirection.Magnitude > weaponSettings.range) return false
 // 	if (serverDirection.Magnitude === 0 || direction.Magnitude === 0) return false
 
 // 	let angle = serverDirection.Dot(direction) / (direction.Magnitude * serverDirection.Magnitude)
@@ -30,14 +30,14 @@ blueGun.Handle.CFrame = new CFrame(-36, 12.05, -591.666)
 // 	raycastParams.FilterType = Enum.RaycastFilterType.Exclude
 // 	raycastParams.FilterDescendantsInstances = [player.Character as Model, Workspace.Effects]
 
-// 	//get gun handle
+// 	//get weapon handle
 // 	const backpack = player.WaitForChild("Backpack") as Backpack
-// 	const gun = backpack.WaitForChild("BlueGun") as Tool
-// 	const gunHandle = gun.WaitForChild("Handle") as Part
+// 	const weapon = backpack.WaitForChild("BlueWeapon") as Tool
+// 	const weaponHandle = weapon.WaitForChild("Handle") as Part
 
-// 	const direction = mouseHitPosition.sub(gunHandle.Position).Unit.mul(blueGunSettings.range)
+// 	const direction = mouseHitPosition.sub(weaponHandle.Position).Unit.mul(blueWeaponSettings.range)
 
-// 	const raycastResult = Workspace.Raycast(gunHandle.Position, direction, raycastParams)
+// 	const raycastResult = Workspace.Raycast(weaponHandle.Position, direction, raycastParams)
 // 	if (!raycastResult) return
 
 // 	const hitPart = raycastResult.Instance
@@ -46,17 +46,17 @@ blueGun.Handle.CFrame = new CFrame(-36, 12.05, -591.666)
 // 		if (!humanoid) return
 
 // 		if (humanoid.Health > 0) {
-// 			let damage = blueGunSettings.damage
-// 			if (hitPart.Name === "Head") damage += blueGunSettings.headshotMultiplier
+// 			let damage = blueWeaponSettings.damage
+// 			if (hitPart.Name === "Head") damage += blueWeaponSettings.headshotMultiplier
 // 			humanoid.TakeDamage(damage)
 // 			if (humanoid.Health <= 0) addKill(player.UserId)
 // 		}
 // 	}
 // })
 
-// Remotes.Server.Get("Replicate").Connect((player, gunPosition, hitPosition, rayColor, raySize) => {
+// Remotes.Server.Get("Replicate").Connect((player, weaponPosition, hitPosition, rayColor, raySize) => {
 // 	print("server fire")
-// 	const laser = createLaser(gunPosition, hitPosition, rayColor, raySize)
+// 	const laser = createLaser(weaponPosition, hitPosition, rayColor, raySize)
 // 	laser.Parent = Workspace.Effects
-// 	Debris.AddItem(laser, blueGunSettings.debrisTime)
+// 	Debris.AddItem(laser, blueWeaponSettings.debrisTime)
 // })

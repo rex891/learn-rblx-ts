@@ -2,11 +2,10 @@ import * as db from "server/db"
 import { PlayerData } from "shared/game-types"
 import { mapEntries } from "shared/helpers"
 import { remotes } from "shared/remotes"
-import { GunSettings } from "shared/Settings"
 
 const AUTOSAVE_INTERVAL = 45
 const playerDataByUserId = new Map<number, PlayerData>()
-const currentPlayerWeapon = new Map<number, GunSettings>()
+const currentPlayerWeapon = new Map<number, string | undefined>()
 
 export function loadPlayerData(player: Player) {
 	let playerData: PlayerData = db.getPlayerData(player.UserId)
@@ -50,6 +49,11 @@ export function getPlayerCoins() {
 
 export function getPublicPlayerData() {
 	return
+}
+
+export function changeWeapon(playerId: number, weaponName: string | undefined) {
+	currentPlayerWeapon.set(playerId, weaponName)
+	print("serverweapon", weaponName)
 }
 
 // autosave all players
