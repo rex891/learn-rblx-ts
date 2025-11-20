@@ -7,7 +7,7 @@ export function App() {
 	let [coinCount, setCoinCount] = useState<number>(0)
 
 	useEffect(() => {
-		const disconnectCoins = remotes.updateCoins.connect(setCoinCount)
+		const disconnectCoins = remotes.updateCoinCount.connect(setCoinCount)
 
 		return () => {
 			disconnectCoins()
@@ -16,13 +16,6 @@ export function App() {
 
 	return (
 		<screengui>
-			{/* <Button
-                
-				text="Click me!"
-				onClick={() => {
-					print("Button clicked!")
-				}}
-			/> */}
 			<Counter initialCount={3}></Counter>
 			<frame
 				Position={new UDim2(0.7, 0, 0.05, 0)}

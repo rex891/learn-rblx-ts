@@ -6,5 +6,3 @@ export type PlayerData = {
 }
 
 export type SessionPlayerData = {}
-
-export type PubilcPlayerData = Pick<PlayerData, "coins">

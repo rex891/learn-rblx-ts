@@ -5,12 +5,12 @@ import { remotes } from "shared/remotes"
 
 const AUTOSAVE_INTERVAL = 45
 const playerDataByUserId = new Map<number, PlayerData>()
-const currentPlayerWeapon = new Map<number, string | undefined>()
+export const currentPlayerWeapon = new Map<number, Tool | undefined>()
 
 export function loadPlayerData(player: Player) {
 	let playerData: PlayerData = db.getPlayerData(player.UserId)
 	print("loaded player data: ", playerData)
-	remotes.updateCoins.fire(player, playerData.coins)
+	remotes.updateCoinCount.fire(player, playerData.coins)
 	playerDataByUserId.set(player.UserId, playerData)
 }
 
@@ -26,7 +26,7 @@ export function savePlayerData(playerId: number) {
 	if (playerData) db.savePlayerData(playerId, playerData)
 }
 
-export function addCoin(playerId: number) {
+export function incrementCoins(playerId: number) {
 	let playerData = playerDataByUserId.get(playerId)
 	if (playerData) {
 		playerData.coins += 1
@@ -47,13 +47,9 @@ export function getPlayerCoins() {
 	return mapEntries(playerDataByUserId)[0]
 }
 
-export function getPublicPlayerData() {
-	return
-}
-
-export function changeWeapon(playerId: number, weaponName: string | undefined) {
-	currentPlayerWeapon.set(playerId, weaponName)
-	print("serverweapon", weaponName)
+export function changeWeapon(playerId: number, weapon: Tool | undefined) {
+	currentPlayerWeapon.set(playerId, weapon)
+	print("serverweapon", weapon?.Name)
 }
 
 // autosave all players

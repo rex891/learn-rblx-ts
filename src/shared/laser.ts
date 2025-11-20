@@ -12,11 +12,9 @@ export function createLaser(weaponPosition: Vector3, hitPosition: Vector3, rayCo
 	return laser
 }
 
-export function calculateHit(character: Model, origin: Vector3, direction: Vector3, range: number) {
+export function raycastWeapon(character: Model, origin: Vector3, direction: Vector3, range: number) {
 	const raycastParams = new RaycastParams()
 	raycastParams.FilterType = Enum.RaycastFilterType.Exclude
 	raycastParams.FilterDescendantsInstances = [character, Workspace.Effects]
-	const raycastResult = Workspace.Raycast(origin, direction.mul(range), raycastParams)
-	if (!raycastResult) return
-	return raycastResult
+	return Workspace.Raycast(origin, direction.mul(range), raycastParams)
 }

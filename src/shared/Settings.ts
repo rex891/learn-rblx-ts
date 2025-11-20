@@ -9,7 +9,7 @@ export type WeaponSettings = {
 	debrisTime: number
 }
 
-export const weapons = {
+export const allWeaponSettings = {
 	BlueGun: {
 		fireMode: "SEMI",
 		damage: 25,
@@ -32,4 +32,4 @@ export const weapons = {
 	},
 }
 
-export type Weapons = typeof weapons
+export type Weapons = typeof allWeaponSettings

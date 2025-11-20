@@ -7,11 +7,11 @@ let rng = new Random()
 
 function createPepsiCan() {
 	let pepsiCan = ReplicatedStorage.PepsiCan.Clone()
-	pepsiCan.CFrame = new CFrame(rng.NextNumber(-512, 512), 32.5, rng.NextNumber(-512, 512))
+	pepsiCan.CFrame = new CFrame(rng.NextNumber(-300, 300), 32.5, rng.NextNumber(-200, -900))
 	pepsiCan.Parent = cans
 }
 
-for (let i = 0; i < 500; i++) {
+for (let i = 0; i < 1000; i++) {
 	createPepsiCan()
 }
 
