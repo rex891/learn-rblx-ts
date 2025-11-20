@@ -1,13 +1,12 @@
 import { Players } from "@rbxts/services"
+import "server/client-listeners"
 import "server/create-props/checkpoints"
 import "server/create-props/create-cans"
 import "server/create-props/create-coins"
+import "server/create-props/create-weapons"
 import "server/create-props/flashlight"
-import "server/weapons"
 
-import { remotes } from "shared/remotes"
 import { changeWeapon, loadPlayerData, savePlayerData } from "./data"
-import { calculateAttack } from "./verify"
 
 Players.PlayerAdded.Connect((player) => {
 	loadPlayerData(player)
@@ -24,7 +23,6 @@ Players.PlayerAdded.Connect((player) => {
 			}
 		})
 	})
-	remotes.weaponAttack.connect(calculateAttack)
 })
 
 Players.PlayerRemoving.Connect((player) => {

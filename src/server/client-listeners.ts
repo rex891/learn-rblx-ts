@@ -1,9 +1,10 @@
 import { Debris, Workspace } from "@rbxts/services"
 import { currentPlayerWeapon } from "server/data"
 import { createLaser, raycastWeapon } from "shared/laser"
+import { remotes } from "shared/remotes"
 import { allWeaponSettings, Weapons } from "shared/Settings"
 
-export function calculateAttack(player: Player, origin: Vector3, direction: Vector3, maxDistance: number) {
+remotes.weaponAttack.connect((player: Player, origin: Vector3, direction: Vector3, maxDistance: number) => {
 	const character = player.Character
 	if (!character) return
 	const currentWeapon = currentPlayerWeapon.get(player.UserId)
@@ -11,6 +12,7 @@ export function calculateAttack(player: Player, origin: Vector3, direction: Vect
 	const weaponSettings = allWeaponSettings[currentWeapon.Name as keyof Weapons]
 
 	const hit = raycastWeapon(character, origin, direction, maxDistance)
+
 	const laser = createLaser(
 		origin,
 		hit?.Position || origin.add(direction.mul(weaponSettings.range)),
@@ -34,4 +36,4 @@ export function calculateAttack(player: Player, origin: Vector3, direction: Vect
 	} else if (!hitPart.IsA("Terrain")) {
 		hitPart.Destroy()
 	}
-}
+})

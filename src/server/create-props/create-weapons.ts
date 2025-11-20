@@ -1,8 +1,5 @@
 import { ServerStorage, Workspace } from "@rbxts/services"
 
-const SECURITY_ANGLE = 180
-const ANGLE_AT_DIST = 3
-
 const redWeapon = ServerStorage.Weapons.RedGun.Clone()
 redWeapon.Parent = Workspace
 redWeapon.Handle.CFrame = new CFrame(-33, 12.05, -591.666)
